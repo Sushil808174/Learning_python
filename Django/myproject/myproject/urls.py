@@ -21,5 +21,6 @@ from myproject import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.hello_world),
+    path('home',views.homePage),
     path('goodbye/',views.good_bye)
 ]
