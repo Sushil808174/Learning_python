@@ -35,7 +35,7 @@ def main():
         print("8. Exit")
 
 
-        choice = input("Enter your choice (1-4): ")
+        choice = input("Enter your choice (1-8): ")
 
         if choice == '1':
             count += 1
@@ -87,7 +87,7 @@ def main():
                     "order_id": order_id,
                     "customer_name": customer_name,
                     "dish_ids": order_dish_ids,
-                    "status": "pending"
+                    "status": "recieved"
                 })
             else:
                 print("Sorry, some dishes in the order are not available. Cannot process the order.")
