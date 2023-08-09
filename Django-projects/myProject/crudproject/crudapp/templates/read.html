@@ -1,18 +1,20 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Read Data</title>
     <link rel="stylesheet" href="{% static 'read.css' %}">
 </head>
+
 <body>
     <h1>Current Data</h1>
-    <ul>
+    <!-- <ul>
         {% for key, value in data.items %}
         <li>{{ key }}: {{ value }}</li>
         {% endfor %}
-    </ul>
-    <table>
+    </ul> -->
+    <table class="order-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -24,14 +26,14 @@
         </thead>
         <tbody>
             {% for key in data %}
-                <tr>
-                    <td>{{key.Id}}</td>
-                    <td>{{key.Name}}</td>
-                    <td>{{key.Email}}</td>
-                    <td>{{key.Age}}</td>
-                    <td>{{key.City}}</td>
-                    
-                </tr>
+            <tr>
+                <td>{{key.Id}}</td>
+                <td>{{key.Name}}</td>
+                <td>{{key.Email}}</td>
+                <td>{{key.Age}}</td>
+                <td>{{key.City}}</td>
+
+            </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -41,4 +43,5 @@
         <a href="/delete">Delete Data</a>
     </div>
 </body>
+
 </html>
