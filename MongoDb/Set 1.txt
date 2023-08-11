@@ -1,0 +1,336 @@
+db.Customers.insertMany([{name: 'Himanshu',
+  email: 'himanshu@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '0987654321'},{name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'},{name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'},{name: 'Jay Raj',
+  email: 'jayraj@gmail.com',
+  address: 'Bihar',
+  phone_number: '9234567890'}])
+
+
+db.Customers.find()
+
+db.Customers.find({},{name:1,email:1,_id:0})
+{
+  name: 'Susheel',
+  email: 'sushil@gmail.com'
+}
+{
+  name: 'Himanshu',
+  email: 'himanshu@gmail.com'
+}
+{
+  name: 'Aman',
+  email: 'aman@gmail.com'
+}
+{
+  name: 'Rahul',
+  email: 'rahul@gmail.com'
+}
+{
+  name: 'Jay Raj',
+  email: 'jayraj@gmail.com'
+}
+db.Customers.find({ _id: ObjectId("64d5f5600ae8a421acaa2dc5")})
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc5"),
+  name: 'Jay Raj',
+  email: 'jayraj@gmail.com',
+  address: 'Bihar',
+  phone_number: '9234567890'
+}
+db.Customers.find({name:{$regex:'^A',$options:'i'}})
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+db.Customers.find({name:{$regex:'A$',$options:'i'}})
+db.Customers.find({name:{$regex:'A',$options:'i'}})
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc2"),
+  name: 'Himanshu',
+  email: 'himanshu@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '0987654321'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc4"),
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc5"),
+  name: 'Jay Raj',
+  email: 'jayraj@gmail.com',
+  address: 'Bihar',
+  phone_number: '9234567890'
+}
+db.Customers.find().sort({name:1})
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc2"),
+  name: 'Himanshu',
+  email: 'himanshu@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '0987654321'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc5"),
+  name: 'Jay Raj',
+  email: 'jayraj@gmail.com',
+  address: 'Bihar',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc4"),
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f4ab0ae8a421acaa2dc1"),
+  name: 'Susheel',
+  email: 'sushil@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '1234567890'
+}
+db.Customers.find().sort({name:-1})
+{
+  _id: ObjectId("64d5f4ab0ae8a421acaa2dc1"),
+  name: 'Susheel',
+  email: 'sushil@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '1234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc4"),
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc5"),
+  name: 'Jay Raj',
+  email: 'jayraj@gmail.com',
+  address: 'Bihar',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc2"),
+  name: 'Himanshu',
+  email: 'himanshu@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '0987654321'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+db.Customers.find().sort({name:1,phone_number:-1})
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc2"),
+  name: 'Himanshu',
+  email: 'himanshu@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '0987654321'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc5"),
+  name: 'Jay Raj',
+  email: 'jayraj@gmail.com',
+  address: 'Bihar',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc4"),
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f4ab0ae8a421acaa2dc1"),
+  name: 'Susheel',
+  email: 'sushil@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '1234567890'
+}
+db.Customers.updateOne({ _id: ObjectId("64d5f4ab0ae8a421acaa2dc1")},{$Set:{address:'Bengluru'}})
+MongoServerError: Unknown modifier: $Set. Expected a valid update modifier or pipeline-style update specified as an array
+db.Customers.updateOne({ _id: ObjectId("64d5f4ab0ae8a421acaa2dc1")},{$set:{address:'Bengluru'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Customers.find()
+{
+  _id: ObjectId("64d5f4ab0ae8a421acaa2dc1"),
+  name: 'Susheel',
+  email: 'sushil@gmail.com',
+  address: 'Bengluru',
+  phone_number: '1234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc2"),
+  name: 'Himanshu',
+  email: 'himanshu@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '0987654321'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc4"),
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc5"),
+  name: 'Jay Raj',
+  email: 'jayraj@gmail.com',
+  address: 'Bihar',
+  phone_number: '9234567890'
+}
+db.Customers.find().sort({_id:-1}).limit(3)
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc5"),
+  name: 'Jay Raj',
+  email: 'jayraj@gmail.com',
+  address: 'Bihar',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc4"),
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+db.Customers.deleteOne({ _id: ObjectId("64d5f5600ae8a421acaa2dc5")})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.Customers.find()
+{
+  _id: ObjectId("64d5f4ab0ae8a421acaa2dc1"),
+  name: 'Susheel',
+  email: 'sushil@gmail.com',
+  address: 'Bengluru',
+  phone_number: '1234567890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc2"),
+  name: 'Himanshu',
+  email: 'himanshu@gmail.com',
+  address: 'Hamirpur',
+  phone_number: '0987654321'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc4"),
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'
+}
+db.Customers.countDocuments()
+4
+db.Customers.find().sort({_id:1}).skip(2)
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc3"),
+  name: 'Aman',
+  email: 'aman@gmail.com',
+  address: 'Kanpur',
+  phone_number: '1234867890'
+}
+{
+  _id: ObjectId("64d5f5600ae8a421acaa2dc4"),
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  address: 'Delhi',
+  phone_number: '9234567890'
+}
+db.Customers.find({_id:{$gt:64d5f4ab0ae8a421acaa2dc1},name:{$regex:'^A',$options:'i'}})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.Customers.find({_id:{$gt:64d5f4ab0ae8a421acaa2dc1},name:{$regex:'^A',$options:'i'}})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.Customers.find({_id:{$gt:'64d5f4ab0ae8a421acaa2dc1'},name:{$regex:'^A',$options:'i'}})
+db.Customers.find({_id:{$gt:'64d5f4ab0ae8a421acaa2dc1'},name:{$regex:'A',$options:'i'}})
+db.Customers.find({
+  $or: [
+    { _id: { $lt:  '64d5f5600ae8a421acaa2dc4'} },
+    { name: { $regex: '^s', $options: 'i' } }
+  ]
+})
+{
+  _id: ObjectId("64d5f4ab0ae8a421acaa2dc1"),
+  name: 'Susheel',
+  email: 'sushil@gmail.com',
+  address: 'Bengluru',
+  phone_number: '1234567890'
+}
+db.Customers.find({
+  $or: [
+    { phone_number: { $exists: false } },
+    { phone_number: null }
+  ]
+})
