@@ -1,0 +1,303 @@
+db.rides.insertMany([{
+  "_id": 1,
+  "driver_id": 1,
+  "passenger_id": 1,
+  "start_location": 'Downtown',
+  "end_location": 'Uptown',
+  "distance": 5,
+  "ride_time": 3,
+  "fare": 300
+},{
+  "_id": 2,
+  "driver_id": 2,
+  "passenger_id": 2,
+  "start_location": 'Delhi',
+  "end_location": 'Kanpur',
+  "distance": 700,
+  "ride_time": 24,
+  "fare": 5000
+},{
+  "_id": 3,
+  "driver_id": 1,
+  "passenger_id": 3,
+  "start_location": 'Kanpur',
+  "end_location": 'Banda',
+  "distance": 80,
+  "ride_time": 3,
+  "fare": 100
+},{
+  "_id": 4,
+  "driver_id": 3,
+  "passenger_id": 4,
+  "start_location": 'Maudaha',
+  "end_location": 'Mahoba',
+  "distance": 69,
+  "ride_time": 2,
+  "fare": 60
+},{
+  "_id": 5,
+  "driver_id": 2,
+  "passenger_id": 5,
+  "start_location": 'Hamirpur',
+  "end_location": 'Kanpur',
+  "distance": 60,
+  "ride_time": 3,
+  "fare": 70
+}
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5
+  }
+}
+db.rides.find()
+{
+  _id: 1,
+  driver_id: 1,
+  passenger_id: 1,
+  start_location: 'Downtown',
+  end_location: 'Uptown',
+  distance: 5,
+  ride_time: 3,
+  fare: 300
+}
+{
+  _id: 2,
+  driver_id: 2,
+  passenger_id: 2,
+  start_location: 'Delhi',
+  end_location: 'Kanpur',
+  distance: 700,
+  ride_time: 24,
+  fare: 5000
+}
+{
+  _id: 3,
+  driver_id: 1,
+  passenger_id: 3,
+  start_location: 'Kanpur',
+  end_location: 'Banda',
+  distance: 80,
+  ride_time: 3,
+  fare: 100
+}
+{
+  _id: 4,
+  driver_id: 3,
+  passenger_id: 4,
+  start_location: 'Maudaha',
+  end_location: 'Mahoba',
+  distance: 69,
+  ride_time: 2,
+  fare: 60
+}
+{
+  _id: 5,
+  driver_id: 2,
+  passenger_id: 5,
+  start_location: 'Hamirpur',
+  end_location: 'Kanpur',
+  distance: 60,
+  ride_time: 3,
+  fare: 70
+}
+db.rides.find().sort({fare:-1})
+{
+  _id: 2,
+  driver_id: 2,
+  passenger_id: 2,
+  start_location: 'Delhi',
+  end_location: 'Kanpur',
+  distance: 700,
+  ride_time: 24,
+  fare: 5000
+}
+{
+  _id: 1,
+  driver_id: 1,
+  passenger_id: 1,
+  start_location: 'Downtown',
+  end_location: 'Uptown',
+  distance: 5,
+  ride_time: 3,
+  fare: 300
+}
+{
+  _id: 3,
+  driver_id: 1,
+  passenger_id: 3,
+  start_location: 'Kanpur',
+  end_location: 'Banda',
+  distance: 80,
+  ride_time: 3,
+  fare: 100
+}
+{
+  _id: 5,
+  driver_id: 2,
+  passenger_id: 5,
+  start_location: 'Hamirpur',
+  end_location: 'Kanpur',
+  distance: 60,
+  ride_time: 3,
+  fare: 70
+}
+{
+  _id: 4,
+  driver_id: 3,
+  passenger_id: 4,
+  start_location: 'Maudaha',
+  end_location: 'Mahoba',
+  distance: 69,
+  ride_time: 2,
+  fare: 60
+}
+db.rides.aggregate([{$group:{_id:null,totalDistance:{$sum:'$distance'},totalFare:{$sum:'$fare'}}}])
+{
+  _id: null,
+  totalDistance: 914,
+  totalFare: 5530
+}
+db.rides.aggregate([{$group:{_id:null,avgRideTime:{$avg:'$ride_time'}}}])
+{
+  _id: null,
+  avgRideTime: 7
+}
+db.rides.find({$or:[{start_location:{$regex:'Downtown',$options:'i'}},{end_location:{$regex:'Downtown',$options:'i'}}]})
+{
+  _id: 1,
+  driver_id: 1,
+  passenger_id: 1,
+  start_location: 'Downtown',
+  end_location: 'Uptown',
+  distance: 5,
+  ride_time: 3,
+  fare: 300
+}
+db.rides.countDocuments({driver_id:2})
+2
+db.rides.updateOne({_id:4},{$set:{fare:65}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.rides.find()
+{
+  _id: 1,
+  driver_id: 1,
+  passenger_id: 1,
+  start_location: 'Downtown',
+  end_location: 'Uptown',
+  distance: 5,
+  ride_time: 3,
+  fare: 300
+}
+{
+  _id: 2,
+  driver_id: 2,
+  passenger_id: 2,
+  start_location: 'Delhi',
+  end_location: 'Kanpur',
+  distance: 700,
+  ride_time: 24,
+  fare: 5000
+}
+{
+  _id: 3,
+  driver_id: 1,
+  passenger_id: 3,
+  start_location: 'Kanpur',
+  end_location: 'Banda',
+  distance: 80,
+  ride_time: 3,
+  fare: 100
+}
+{
+  _id: 4,
+  driver_id: 3,
+  passenger_id: 4,
+  start_location: 'Maudaha',
+  end_location: 'Mahoba',
+  distance: 69,
+  ride_time: 2,
+  fare: 65
+}
+{
+  _id: 5,
+  driver_id: 2,
+  passenger_id: 5,
+  start_location: 'Hamirpur',
+  end_location: 'Kanpur',
+  distance: 60,
+  ride_time: 3,
+  fare: 70
+}
+db.rides.aggregate([{$group:{_id:"$driver_id",TotalFares:{$sum:"$fare"}}}])
+{
+  _id: 2,
+  TotalFares: 5070
+}
+{
+  _id: 1,
+  TotalFares: 400
+}
+{
+  _id: 3,
+  TotalFares: 65
+}
+db.rides.deleteOne({_id:2})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.rides.find()
+{
+  _id: 1,
+  driver_id: 1,
+  passenger_id: 1,
+  start_location: 'Downtown',
+  end_location: 'Uptown',
+  distance: 5,
+  ride_time: 3,
+  fare: 300
+}
+{
+  _id: 3,
+  driver_id: 1,
+  passenger_id: 3,
+  start_location: 'Kanpur',
+  end_location: 'Banda',
+  distance: 80,
+  ride_time: 3,
+  fare: 100
+}
+{
+  _id: 4,
+  driver_id: 3,
+  passenger_id: 4,
+  start_location: 'Maudaha',
+  end_location: 'Mahoba',
+  distance: 69,
+  ride_time: 2,
+  fare: 65
+}
+{
+  _id: 5,
+  driver_id: 2,
+  passenger_id: 5,
+  start_location: 'Hamirpur',
+  end_location: 'Kanpur',
+  distance: 60,
+  ride_time: 3,
+  fare: 70
+}
+
+

@@ -1,0 +1,161 @@
+db.rides.find().sort({fare:1}).limit(1)
+{
+  _id: 4,
+  driver_id: 3,
+  passenger_id: 4,
+  start_location: 'Maudaha',
+  end_location: 'Mahoba',
+  distance: 69,
+  ride_time: 2,
+  fare: 65
+}
+db.rides.find().sort({fare:-1}).limit(1)
+{
+  _id: 1,
+  driver_id: 1,
+  passenger_id: 1,
+  start_location: 'Downtown',
+  end_location: 'Uptown',
+  distance: 5,
+  ride_time: 3,
+  fare: 300
+}
+db.rides.aggregate([{$group:{_id:"$driver_id",AverageFare:{$avg:"$fare"},AverageDistance:{$avg:"$distance"}}}])
+{
+  _id: 3,
+  AverageFare: 65,
+  AverageDistance: 69
+}
+{
+  _id: 1,
+  AverageFare: 200,
+  AverageDistance: 42.5
+}
+{
+  _id: 2,
+  AverageFare: 70,
+  AverageDistance: 60
+}
+db.rides.aggregate([{$group:{_id:"$driver_id",TotalRides:{$sum:1}}},{$match:{TotalRides:{$gt:5}}}])
+db.Driver.insertMany([{driver_id:1,name:"Ankit"},{driver_id:2,name:"Aman"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64d65e8c0ae8a421acaa2dc7"),
+    '1': ObjectId("64d65e8c0ae8a421acaa2dc8")
+  }
+}
+db.Driver.find()
+{
+  _id: ObjectId("64d65e8c0ae8a421acaa2dc7"),
+  driver_id: 1,
+  name: 'Ankit'
+}
+{
+  _id: ObjectId("64d65e8c0ae8a421acaa2dc8"),
+  driver_id: 2,
+  name: 'Aman'
+}
+db.rides.aggregate([
+   {
+      $group: {
+         _id: "$driver_id",
+         totalFare: { $sum: "$fare" }
+      }
+   },
+   {
+      $sort: {
+         totalFare: -1
+      }
+   },
+   {
+      $limit: 1
+   },
+   {
+      $lookup: {
+         from: "Drivers",  // Name of the Drivers collection
+         localField: "_id",
+         foreignField: "driver_id",
+         as: "driverInfo"
+      }
+   },
+   {
+      $unwind: "$driverInfo"
+   },
+   {
+      $project: {
+         _id: 0,
+         driverName: "$driverInfo.name",
+         totalFare: 1
+      }
+   }
+])
+db.rides.aggregate([
+   {
+      $group: {
+         _id: "$driver_id",
+         totalEarnings: { $sum: "$fare" }
+      }
+   },
+   {
+      $sort: {
+         totalEarnings: -1
+      }
+   },
+   {
+      $limit: 3
+   },
+   {
+      $project: {
+         _id: 1,
+         totalEarnings: 1
+      }
+   }
+])
+{
+  _id: 1,
+  totalEarnings: 400
+}
+{
+  _id: 2,
+  totalEarnings: 70
+}
+{
+  _id: 3,
+  totalEarnings: 65
+}
+db.rides.aggregate([
+   {
+      $group: {
+         _id: "$driver_id",
+         totalEarnings: { $sum: "$fare" }
+      }
+   },
+   {
+      $sort: {
+         totalEarnings: -1
+      }
+   },
+   {
+      $limit: 3
+   }
+])
+{
+  _id: 1,
+  totalEarnings: 400
+}
+{
+  _id: 2,
+  totalEarnings: 70
+}
+{
+  _id: 3,
+  totalEarnings: 65
+}
+db.rides.aggregate([
+   {
+      $match: {
+         ride_date: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) }
+      }
+   }
+])
