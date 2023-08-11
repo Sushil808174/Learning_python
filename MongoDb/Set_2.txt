@@ -1,0 +1,407 @@
+use Set_2
+switched to db Set_2
+db.restaurants.insertOne({"_id":ObjectId(1),
+   "name": "Restaurant",
+   "cuisine_type": "Italian",
+   "location": "123 Main St, City",
+   "average_rating": 4.5,
+   "delivery_available": true
+})
+{
+  acknowledged: true,
+  insertedId: ObjectId("000000010ae8a421acaa2dc6")
+}
+db.restaurants.find()
+{
+  _id: ObjectId("000000010ae8a421acaa2dc6"),
+  name: 'Restaurant',
+  cuisine_type: 'Italian',
+  location: '123 Main St, City',
+  average_rating: 4.5,
+  delivery_available: true
+}
+db.restaurants.deleteOne({_id: ObjectId("000000010ae8a421acaa2dc6")})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.restaurants.find()
+db.restaurants.insertOne({"_id":1,
+   "name": "Restaurant",
+   "cuisine_type": "Italian",
+   "location": "123 Main St, City",
+   "average_rating": 4.5,
+   "delivery_available": true
+})
+{
+  acknowledged: true,
+  insertedId: 1
+}
+db.restaurants.find()
+{
+  _id: 1,
+  name: 'Restaurant',
+  cuisine_type: 'Italian',
+  location: '123 Main St, City',
+  average_rating: 4.5,
+  delivery_available: true
+}
+db.restaurants.insertMany([{ _id: 2,
+  name: 'Restaurant2',
+  cuisine_type: 'Indian',
+  location: 'Delhi',
+  average_rating: 4.5,
+  delivery_available: true},{ _id: 3,
+  name: 'Restaurant3',
+  cuisine_type: 'Russian',
+  location: '123 Main St, City',
+  average_rating: 4.9,
+  delivery_available: true},{ _id: 4,
+  name: 'Restaurant4',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 4.6,
+  delivery_available: true},{ _id: 5,
+  name: 'Restaurant5',
+  cuisine_type: 'Nepal',
+  location: 'Random',
+  average_rating: 4.0,
+  delivery_available: true}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 2,
+    '1': 3,
+    '2': 4,
+    '3': 5
+  }
+}
+db.restaurants.find()
+{
+  _id: 1,
+  name: 'Restaurant',
+  cuisine_type: 'Italian',
+  location: '123 Main St, City',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 2,
+  name: 'Restaurant2',
+  cuisine_type: 'Indian',
+  location: 'Delhi',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 3,
+  name: 'Restaurant3',
+  cuisine_type: 'Russian',
+  location: '123 Main St, City',
+  average_rating: 4.9,
+  delivery_available: true
+}
+{
+  _id: 4,
+  name: 'Restaurant4',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 4.6,
+  delivery_available: true
+}
+{
+  _id: 5,
+  name: 'Restaurant5',
+  cuisine_type: 'Nepal',
+  location: 'Random',
+  average_rating: 4,
+  delivery_available: true
+}
+db.restaurants.find().sort({average_rating:-1})
+{
+  _id: 3,
+  name: 'Restaurant3',
+  cuisine_type: 'Russian',
+  location: '123 Main St, City',
+  average_rating: 4.9,
+  delivery_available: true
+}
+{
+  _id: 4,
+  name: 'Restaurant4',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 4.6,
+  delivery_available: true
+}
+{
+  _id: 1,
+  name: 'Restaurant',
+  cuisine_type: 'Italian',
+  location: '123 Main St, City',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 2,
+  name: 'Restaurant2',
+  cuisine_type: 'Indian',
+  location: 'Delhi',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 5,
+  name: 'Restaurant5',
+  cuisine_type: 'Nepal',
+  location: 'Random',
+  average_rating: 4,
+  delivery_available: true
+}
+db.restaurants.find({delivery_available:true,{$gt:{average_rating:4}}})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.restaurants.find({delivery_available:true,average_rating:{$gt:4}})
+{
+  _id: 1,
+  name: 'Restaurant',
+  cuisine_type: 'Italian',
+  location: '123 Main St, City',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 2,
+  name: 'Restaurant2',
+  cuisine_type: 'Indian',
+  location: 'Delhi',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 3,
+  name: 'Restaurant3',
+  cuisine_type: 'Russian',
+  location: '123 Main St, City',
+  average_rating: 4.9,
+  delivery_available: true
+}
+{
+  _id: 4,
+  name: 'Restaurant4',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 4.6,
+  delivery_available: true
+}
+db.restaurants.find({$or:[{cuisine_type:{$exists: false}},{cuisine_type:null}]})
+db.restaurants.insertOne({_id: 5,
+  name: 'Restaurant5',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 3.9,
+  delivery_available: false})
+MongoServerError: E11000 duplicate key error collection: Set_2.restaurants index: _id_ dup key: { _id: 5 }
+db.restaurants.insertOne({_id: 6,
+  name: 'Restaurant5',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 3.9,
+  delivery_available: false})
+{
+  acknowledged: true,
+  insertedId: 6
+}
+db.restaurants.find
+[Function: find] AsyncFunction {
+  returnsPromise: true,
+  apiVersions: [ 1, Infinity ],
+  returnType: 'Cursor',
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+db.restaurants.find()
+{
+  _id: 1,
+  name: 'Restaurant',
+  cuisine_type: 'Italian',
+  location: '123 Main St, City',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 2,
+  name: 'Restaurant2',
+  cuisine_type: 'Indian',
+  location: 'Delhi',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 3,
+  name: 'Restaurant3',
+  cuisine_type: 'Russian',
+  location: '123 Main St, City',
+  average_rating: 4.9,
+  delivery_available: true
+}
+{
+  _id: 4,
+  name: 'Restaurant4',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 4.6,
+  delivery_available: true
+}
+{
+  _id: 5,
+  name: 'Restaurant5',
+  cuisine_type: 'Nepal',
+  location: 'Random',
+  average_rating: 4,
+  delivery_available: true
+}
+{
+  _id: 6,
+  name: 'Restaurant5',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 3.9,
+  delivery_available: false
+}
+db.restaurants.countDocuments({delivery_available:true})
+5
+db.restaurants.insertOne({_id: 7,
+  name: 'Restaurant7',
+  cuisine_type: 'England',
+  location: 'New York',
+  average_rating: 3.9,
+  delivery_available: false})
+{
+  acknowledged: true,
+  insertedId: 7
+}
+db.restaurants.find({location:'New York'})
+{
+  _id: 7,
+  name: 'Restaurant7',
+  cuisine_type: 'England',
+  location: 'New York',
+  average_rating: 3.9,
+  delivery_available: false
+}
+db.restaurants.aggregate([{$group:{_id:null,averageRating:{$avg:"average_rating"}}}])
+{
+  _id: null,
+  averageRating: null
+}
+db.restaurants.aggregate([{$group:{_id:null,averageRating:{$avg:"$average_rating"}}}])
+{
+  _id: null,
+  averageRating: 4.328571428571428
+}
+db.restaurants.find().sort({average_rating:-1}).limit(5)
+{
+  _id: 3,
+  name: 'Restaurant3',
+  cuisine_type: 'Russian',
+  location: '123 Main St, City',
+  average_rating: 4.9,
+  delivery_available: true
+}
+{
+  _id: 4,
+  name: 'Restaurant4',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 4.6,
+  delivery_available: true
+}
+{
+  _id: 1,
+  name: 'Restaurant',
+  cuisine_type: 'Italian',
+  location: '123 Main St, City',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 2,
+  name: 'Restaurant2',
+  cuisine_type: 'Indian',
+  location: 'Delhi',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 5,
+  name: 'Restaurant5',
+  cuisine_type: 'Nepal',
+  location: 'Random',
+  average_rating: 4,
+  delivery_available: true
+}
+db..re
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.restaurants.deleteOne({_id:7})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.restaurants.find()
+{
+  _id: 1,
+  name: 'Restaurant',
+  cuisine_type: 'Italian',
+  location: '123 Main St, City',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 2,
+  name: 'Restaurant2',
+  cuisine_type: 'Indian',
+  location: 'Delhi',
+  average_rating: 4.5,
+  delivery_available: true
+}
+{
+  _id: 3,
+  name: 'Restaurant3',
+  cuisine_type: 'Russian',
+  location: '123 Main St, City',
+  average_rating: 4.9,
+  delivery_available: true
+}
+{
+  _id: 4,
+  name: 'Restaurant4',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 4.6,
+  delivery_available: true
+}
+{
+  _id: 5,
+  name: 'Restaurant5',
+  cuisine_type: 'Nepal',
+  location: 'Random',
+  average_rating: 4,
+  delivery_available: true
+}
+{
+  _id: 6,
+  name: 'Restaurant5',
+  cuisine_type: 'American',
+  location: 'Vivekananda',
+  average_rating: 3.9,
+  delivery_available: false
+}
+Set_2
+Selection deleted
+
