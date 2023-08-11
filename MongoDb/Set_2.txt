@@ -1,4 +1,5 @@
 use Set_2
+
 switched to db Set_2
 db.restaurants.insertOne({"_id":ObjectId(1),
    "name": "Restaurant",
@@ -11,6 +12,7 @@ db.restaurants.insertOne({"_id":ObjectId(1),
   acknowledged: true,
   insertedId: ObjectId("000000010ae8a421acaa2dc6")
 }
+
 db.restaurants.find()
 {
   _id: ObjectId("000000010ae8a421acaa2dc6"),
