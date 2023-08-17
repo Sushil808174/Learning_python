@@ -44,4 +44,23 @@ class WeatherViewTest(TestCase):
         data = response.json()
         self.assertEqual(data['weather'], 'Cloudy')
 
+
+    def test_create_weather_data(self):
+        new_data = {'city': 'Chicago', 'temperature': 18, 'weather': 'Cloudy'}
+        response = self.client.post(reverse('weather_list'), new_data, content_type='application/json')
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(weather_data['Chicago'], {'temperature': 18, 'weather': 'Cloudy'})
+
+    def test_update_weather_data(self):
+        updated_data = {'temperature': 22, 'weather': 'Sunny'}
+        response = self.client.put(reverse('weather_detail', kwargs={'city': 'New York'}),
+                                   updated_data, content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(weather_data['New York'], {'temperature': 22, 'weather': 'Sunny'})
+
+    def test_delete_weather_data(self):
+        response = self.client.delete(reverse('weather_detail', kwargs={'city': 'Los Angeles'}))
+        self.assertEqual(response.status_code, 204)
+        self.assertNotIn('Los Angeles', weather_data)    
+
       
