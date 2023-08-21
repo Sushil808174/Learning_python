@@ -4,6 +4,8 @@ def allocate_projects(employees,projects):
             if employee['skills']==project['required_skills']:
                 employee['current_project']=project['name']
                 
+
+                
 employees = [
     {'name':'John','skills':['Python','Database'],'current_project':None},
     {'name':'Emma','skills':['Java','Testing'],'current_project':None},
