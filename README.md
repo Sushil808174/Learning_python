@@ -1,3 +1,3 @@
 # All Python Program
 
-Some Python program.
+Some Python program that I am practicing.
