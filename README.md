@@ -1,2 +1,2 @@
-# All Python Program
+## All Python Program
 Some Python program that I am practicing.
